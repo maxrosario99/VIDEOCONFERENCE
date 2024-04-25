@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import {usePathname} from "next/navigation"
 import { sidebarLinks } from '@/app/(root)/constants';
@@ -10,7 +11,7 @@ const Sidebar = () => {
     justify-between bg-dark-1 p-6 pt-28 text-white max-sm:hidden lg:w-[264]">
         <div className="flex flex- flex-col gap-6">
             {sidebarLinks.map((item) =>{
-                const isActive = pathname === item.route || pathname.startsWith(link.route);
+                const isActive = pathname === item.route || pathname.startsWith(item.route);
                 return(
                     <Link
                         href={item.route}
