@@ -1,24 +1,66 @@
 import Image from 'next/image'
 import React from 'react'
+import HomeCard from './ui/HomeCard'
+import { useRouter } from 'next/router'
+import MeetingModal from './ui/MeetingModal'
+import { useState } from 'react'
 
 const MeetingTypeList = () => {
+  const router = useRouter
+  const [meetingState, setMeetingState] = 
+  useState<"isScheduleMeeting" | "isJoiningMeeting" | 
+  "isInstantMeeting" | undefined>()
+
+  const createMeeting = () => {
+    
+  }
   return (
     <section className="grid grid-cols-1 gap-5
     md:grid-cols-2 xl:grid-cols-4" >
-        <div className='bg-orange-1 px-4 py-6 flex flex-col
-        justify-between w-full xl:max-w-[270px] min-h-[260px] rounded-[14px] cursor-pointer'
-        onClick={() => {}} >
-            <div className='flex-center glassmorphism
-            size-12 rounded-[10px]' >
-                <Image src="/icons/add-meeting.svg"
-                alt="meeting" width={27} height={27} />
+        <HomeCard
+        img="/icons/add-meeting.svg"
+        title="New Meeting"
+        description="Start an instant Meeting"
+        handleClick={() => setMeetingState
+          ("isJoiningMeeting")
+        }
+        className="bg-orange-1"
 
-            </div>
-            <div className='flex flex-col gap-2' >
-                <h1 className='text-2xl font-bold' >New Meeting</h1>
-                <p className='text-lg font-normal' > Start an instant Meeting</p>
-            </div>
-        </div>
+        />
+        <HomeCard
+        img="/icons/schedule.svg"
+        title="Schedule Meeting"
+        description="Plan your Meeting"
+        handleClick={() => setMeetingState
+          ("isScheduleMeeting")
+        }
+        className="bg-blue-1"
+        />
+        <HomeCard
+        img="/icons/add-recordings.svg"
+        title="View Recordings"
+        description="Check out your recordings"
+        handleClick={() => router.push("/recordings")
+          ("isJoiningMeeting")
+        }
+        className="bg-purple-1"
+        />
+        <HomeCard
+        img="/icons/join-meeting.svg"
+        title="join Meeting"
+        description="via Invitation link"
+        handleClick={() => setMeetingState
+          ("isJoiningMeeting")
+        }
+        className="bg-yellow-1"
+        />
+        <MeetingModal 
+        isOpen={meetingState === "isInstantMeeting"}
+        onClose={() => setMeetingState(undefined)}
+        className="text-center"
+        buttonText="Start Meeting"
+        handleClick={createMeeting}
+        />
     </section>
 
   )
