@@ -1,11 +1,46 @@
 "use client"
 import React from 'react'
+import { useState } from 'react'
+import { useUser } from '@clerk/nextjs'
 
-const Meeting = ({params}: {params: {id: string }}) => {
-  const { user, isLoaded } useUser();
+import { useParams } from 'next/navigation'
+import { Loader } from 'lucide-react'
+import {useGetCallbyId} from "../hooks/useGetCallById"
+const MeetingPage = () => {
+  const { id } = useParams();
+  const { isLoaded, user } = useUser();
+  const { call, isCallLoading } = useGetCallbyId(id);
+  const [isSetupComplete, setIsSetupComplete] = useState(false);
+
+  if (!isLoaded || isCallLoading) return <Loader />;
+
+  if (!call) return (
+    <p className="text-center text-3xl font-bold text-white">
+      Call Not Found
+    </p>
+  );
+
+
+
+const notAllowed = call.type === 'invited' && (!user || !call.state.members.find((m) => m.user.id === user.id));
+
+      if (notAllowed) return <Alert title="You are not allowed to join this meeting" />;
+
   return (
-    <div>Meeting Room: #{params.id} </div>
-  )
-}
+    <main className="h-screen w-full">
+      <StreamCall call={call}>
+      
+      
+        <StreamTheme>
 
+        {!isSetupComplete ? (
+          <MeetingSetup setIsSetupComplete={setIsSetupComplete} />
+        ) : (
+          <MeetingRoom />
+        )}
+        </StreamTheme>
+      </StreamCall>
+    </main>
+  );
+};
 export default Meeting

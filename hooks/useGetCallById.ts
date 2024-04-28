@@ -1,0 +1,24 @@
+import { useEffect, useState } from "react"
+
+export const useGetCallById = (id: string | string[]) =>
+    {
+        const [call, setCall] = useState<Call>()
+        const [isCallLoading, setIsCallLoading] = useState(true)
+
+        const client = useStreamVideoClient()
+
+        useEffect(()=> {
+            if(!client) return;
+            const loadCall = async ( ) => {
+                const { calls} = await client.queryCalls({
+                    filter_conditions: {
+                        id
+                    }
+                })
+                if (calls.length > 0) setCalls(calls[0])
+
+                    setIsCallLoading(false)
+            }
+        }, client, id)
+        return { call, isCallLoading };
+    }
