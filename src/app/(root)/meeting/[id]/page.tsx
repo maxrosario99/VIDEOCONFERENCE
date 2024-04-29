@@ -5,7 +5,7 @@ import { useUser } from '@clerk/nextjs'
 
 import { useParams } from 'next/navigation'
 import { Loader } from 'lucide-react'
-import {useGetCallbyId} from "../hooks/useGetCallById"
+import {useGetCallbyId} from "@/hooks/useGetCallbyId"
 const MeetingPage = () => {
   const { id } = useParams();
   const { isLoaded, user } = useUser();

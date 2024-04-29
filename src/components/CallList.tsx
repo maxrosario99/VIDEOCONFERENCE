@@ -3,8 +3,8 @@
 import { Call, CallRecording } from '@stream-io/video-react-sdk';
 
 import Loader from './Loader';
-import { useGetCalls } from '@/hooks/useGetCalls';
-import MeetingCard from './MeetingCard';
+import { useGetCalls } from "@/hooks"
+import MeetingCard from "./ui/MeetingCard"
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -43,7 +43,7 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
   useEffect(() => {
     const fetchRecordings = async () => {
       const callData = await Promise.all(
-        callRecordings?.map((meeting) => meeting.queryRecordings()) ?? [],
+        callRecordings?.map((meeting: { queryRecordings: () => any; }) => meeting.queryRecordings()) ?? [],
       );
 
       const recordings = callData
@@ -106,3 +106,5 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
     </div>
   );
 };
+
+export default CallList
