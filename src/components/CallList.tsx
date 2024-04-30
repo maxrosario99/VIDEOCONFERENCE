@@ -3,7 +3,7 @@
 import { Call, CallRecording } from '@stream-io/video-react-sdk';
 
 import Loader from './Loader';
-import { useGetCalls } from "@/hooks"
+import { useGetCalls } from "@/hooks/useGetCalls"
 import MeetingCard from "./ui/MeetingCard"
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -106,4 +106,5 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
     </div>
   );
 };
-export default CallList
+
+export default CallList;
