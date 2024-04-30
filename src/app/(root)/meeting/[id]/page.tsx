@@ -17,9 +17,6 @@ const MeetingPage = () => {
   const { call, isCallLoading } = useGetCallById(id);
   const [isSetupComplete, setIsSetupComplete] = useState(false);
 
-  console.log("isloaded: ", isLoaded)
-  console.log("isCallLoading: ", isCallLoading)
-
   if (!isLoaded || isCallLoading) return <Loader />;
 
   if (!call) return (
