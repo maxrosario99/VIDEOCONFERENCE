@@ -17,6 +17,9 @@ const MeetingPage = () => {
   const { call, isCallLoading } = useGetCallById(id);
   const [isSetupComplete, setIsSetupComplete] = useState(false);
 
+  console.log("isloaded: ", isLoaded)
+  console.log("isCallLoading: ", isCallLoading)
+
   if (!isLoaded || isCallLoading) return <Loader />;
 
   if (!call) return (
@@ -30,6 +33,7 @@ const MeetingPage = () => {
 const notAllowed = call.type === 'invited' && (!user || !call.state.members.find((m) => m.user.id === user.id));
 
       if (notAllowed) return <Alert title="You are not allowed to join this meeting" />;
+
 
   return (
     <main className="h-screen w-full">
