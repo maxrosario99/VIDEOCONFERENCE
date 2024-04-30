@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { cn } from '@/lib/utils';
 
 import {
     Dialog,
@@ -11,6 +11,8 @@ import {
   } from "@/components/ui/dialog"
 import Image from 'next/image';
 import { Button } from './button';
+
+import { ReactNode } from 'react';
   
 interface MeetingModalProps {
     isOpen: boolean;
@@ -28,7 +30,7 @@ const MeetingModal = ({isOpen, onClose, title, className,
     children, handleClick, buttonText, image, buttonIcon 
 }: MeetingModalProps) => {
   return (
-    <Dialog open={isOpen} onOpenChange={{onClose}}>
+    <Dialog open={isOpen} onOpenChange={onClose}>
     <DialogTrigger>Open</DialogTrigger>
     <DialogContent className='flex w-full max-w-[520px] 
     flex-col gap-6 border-none bg-dark-1 px-6 py-9 
