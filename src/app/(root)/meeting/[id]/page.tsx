@@ -5,11 +5,16 @@ import { useUser } from '@clerk/nextjs'
 
 import { useParams } from 'next/navigation'
 import { Loader } from 'lucide-react'
-import {useGetCallbyId} from "@/hooks/useGetCallbyId"
+import {useGetCallById} from "@/hooks/useGetCallById"
+import { StreamCall } from '@stream-io/video-react-sdk'
+import { StreamTheme,  } from '@stream-io/video-react-sdk'
+import MeetingSetup from '@/components/MeetingSetup'
+import Alert from '@/components/Alert'
+import MeetingRoom from '@/components/MeetingRoom'
 const MeetingPage = () => {
   const { id } = useParams();
   const { isLoaded, user } = useUser();
-  const { call, isCallLoading } = useGetCallbyId(id);
+  const { call, isCallLoading } = useGetCallById(id);
   const [isSetupComplete, setIsSetupComplete] = useState(false);
 
   if (!isLoaded || isCallLoading) return <Loader />;
@@ -43,4 +48,4 @@ const notAllowed = call.type === 'invited' && (!user || !call.state.members.find
     </main>
   );
 };
-export default Meeting
+export default MeetingPage
