@@ -1,20 +1,16 @@
 "use client"
 
-import React from 'react'
+import { sidebarLinks } from '@/app/(root)/constants'
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetTrigger
+} from "@/components/ui/sheet"
+import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
-import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
-import {
-    Sheet,
-    SheetClose,
-    SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-  } from "@/components/ui/sheet"
-import { sidebarLinks } from '@/app/(root)/constants'
 
 const MobileNav = () => {
   const pathname = usePathname();

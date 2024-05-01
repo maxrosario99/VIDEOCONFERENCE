@@ -29,8 +29,6 @@ const Home = () => {
             <p className='text-lg font-medium text-sky-1 
             lg:text-2xl' > {date} </p>
           </div>
-        
-        
         </div>
       </div>
       <MeetingTypeList />

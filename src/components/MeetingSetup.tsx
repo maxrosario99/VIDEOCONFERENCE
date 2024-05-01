@@ -1,11 +1,11 @@
 'use client';
-import { useEffect, useState } from 'react';
 import {
   DeviceSettings,
   VideoPreview,
   useCall,
   useCallStateHooks,
 } from '@stream-io/video-react-sdk';
+import { useEffect, useState } from 'react';
 
 import Alert from './Alert';
 import { Button } from './ui/button';
